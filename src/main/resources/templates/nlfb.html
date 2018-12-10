@@ -20,7 +20,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" th:href="@{/css/skins/skin-green.css}">
-
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/sweetalert/dist/sweetalert.css}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -68,10 +69,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="tab" target="_blank" th:if="${#session.getAttribute('user') != null}"> [[${#session.getAttribute('user').username}]]</a>
+                            <input type="hidden" id="userid" th:value="${#session.getAttribute('user').id}">
 
                         </li>
                         <li>
-                            <a href="#" class="tab" target="_blank">退出</a>
+                            <a id="logoutBtn"  class="tab" target="_blank">退出</a>
                         </li>
 
                     </ul>
@@ -117,30 +119,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Page Header
-                <small>Optional description</small>
+                年龄分布
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+            <div class="breadcrumb"></div>
+            <span class=" breadcrumb" style="margin-right: 50%;font-size: 14px">时间选择</span>
+            <div style="width: 40%;top: 4px; margin-right: 10%" class="breadcrumb input-group input-medium date-picker input-daterange"
+                 data-date-format="yyyy-mm-dd">
+                <input id="startTime" name="dtBegin" class="form-control" style="font-size: 13px;" type="text" value="">
+                <span class="input-group-addon">到</span>
+                <input id="endTime" name="dtEnd" class="form-control" style="font-size: 13px;" type="text" value="">
+            </div>
+            <input id="ageAnalysisbtn" class="breadcrumb  btn btn-primary" type="button" value="确定" style="padding:8px 15px;top: 10px;margin-right: 20px;background-color: rgb(14, 167, 14);color: white;">
+
         </section>
 
         <!-- Main content -->
-        <section class="content container-fluid">
+        <section class="content container-fluid" style="margin-top: 35px;margin-left: 170px">
 
             <!--------------------------
               | Your Page Content Here |
               -------------------------->
-
-
+            <div id="main" style="width: 700px; height: 500px;"></div>
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer" style="position: fixed">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
             Anything you want
@@ -162,8 +168,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 3.3.7 -->
 <script th:src="@{/js/bootstrap.js}"></script>
 <!-- AdminLTE App -->
+<script th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.zh-CN.js}"></script>
 <script th:src="@{/js/adminlte.js}"></script>
-
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/echarts.common.min.js}"></script>
+<script th:src="@{/js/plugins/sweetalert/dist/sweetalert.min.js}"></script>
+<script th:src="@{/js/age.sex.js}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

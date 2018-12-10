@@ -28,9 +28,9 @@ public class SexAnalysisController {
 
         List<SexAnalysis> sexAnalyResult = sexanalysis.showSexAnalysisById(params);
         System.out.print(sexAnalyResult.size());
-        if(sexAnalyResult.size()==0){
+        if(sexAnalyResult.size() == 0){
             System.out.print("NUKLLLLLLL");
-            return Result.fail();
+            return Result.success("没有数据");
         }
         if(sexAnalyResult.size() == 2){
             sexAnalyResult.get(0).setUserId(params.getUserId());

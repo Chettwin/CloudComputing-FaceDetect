@@ -1,10 +1,8 @@
 package com.example.demo.model;
 
-import lombok.ToString;
 
 import java.util.List;
 
-@ToString
 public class AgeAnalysis {
     private String disc;  //年龄范围
     private int Num=0;     //人数

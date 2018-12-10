@@ -4,6 +4,6 @@
 <mapper namespace="com.example.demo.mapper.PassengerFlowAnalysisMapper">
 
     <select id="showPassFlowAnalysisById" parameterType="com.example.demo.common.ParamObject" resultType="com.example.demo.model.PassengerFlow">
-        select count(*) passengerFolw, entry_time date  from t_entrytime where user_id=#{userId} and  str_to_date(#{endDate}, '%Y-%m-%d') &lt;= str_to_date(entry_time, '%Y-%m-%d') and str_to_date(#{startDate}, '%Y-%m-%d') &gt;= str_to_date(entry_time, '%Y-%m-%d') group by entry_time
+        select count(*) passengerFolw, entry_time date  from t_entrytime where user_id=#{userId} and  str_to_date(#{endDate}, '%Y-%m-%d') &lt;= str_to_date(entry_time, '%Y-%m-%d') and str_to_date(#{startDate}, '%Y-%m-%d') &gt;= str_to_date(entry_time, '%Y-%m-%d') group by entry_time order by str_to_date(entry_time,'%Y-%m-%d')
     </select>
 </mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.InsertSQLMapper">
+    <!--private String face_id;-->
+    <!--private String entry_time;-->
+    <!--private int user_id;-->
+    <!--private int entry_hour;-->
+    <!--private int entry_minute;-->
+    <!--private int entry_second;-->
+    <insert id="insertEntryTime" parameterType="com.example.demo.model.FaceEntryTime">
+        insert into t_entrytime(face_id, entry_time, user_id, entry_hour, entry_minute, entry_second) values (#{face_id},#{entry_time},#{user_id},#{entry_hour},#{entry_minute},#{entry_second});
+    </insert>
+
+    <insert id="insertFaceAttribute" parameterType="com.example.demo.common.FaceAttribute">
+        insert into t_facefeature values (#{faceId},#{sex},#{age});
+    </insert>
+
+    <select id="getLastEntryTime" resultType="com.example.demo.model.FaceEntryTime">
+        select * from t_entrytime where face_id = #{arg0} and user_id=#{arg1} order by str_to_date(entry_time,'%Y-%m-%d') desc,entry_hour desc,entry_minute desc ,entry_second desc limit 1;
+    </select>
+</mapper>
